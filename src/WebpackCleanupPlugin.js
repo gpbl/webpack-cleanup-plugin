@@ -4,7 +4,7 @@ import fs from "fs";
 
 class WebpackCleanupPlugin {
 
-  constructor(options) {
+  constructor(options = {}) {
     this.options = options;
   }
 
