@@ -1,10 +1,11 @@
 /* eslint no-console: 0 */
 
 import fs from "fs";
+import recursiveReadSync from "recursive-readdir-sync";
 
 class WebpackCleanupPlugin {
 
-  constructor(options) {
+  constructor(options = {}) {
     this.options = options;
   }
 
@@ -14,9 +15,11 @@ class WebpackCleanupPlugin {
 
     compiler.plugin("done", (stats) => {
       const { exclude=[] } = this.options;
+      // recursiveReadSync returns prefix of outputPath + "/"
+      const offset = outputPath.length + 1;
       const assets = stats.toJson().assets.map(asset => asset.name);
-
-      const files = fs.readdirSync(outputPath)
+      const files = recursiveReadSync(outputPath)
+        .map(path => path.substr(offset))
         .filter(file => exclude.indexOf(file) === -1 && assets.indexOf(file) === -1)
         .map(file => `${outputPath}/${file}`);
 
