@@ -25,7 +25,7 @@ class WebpackCleanupPlugin {
 
       files.forEach(fs.unlinkSync);
 
-      quiet && console.log("\nWebpackCleanupPlugin: %s file(s) deleted.", files.length);
+      !quiet && console.log("\nWebpackCleanupPlugin: %s file(s) deleted.", files.length);
 
     });
 
