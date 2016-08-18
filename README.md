@@ -43,3 +43,11 @@ plugins: [
   })
 ]
 ```
+
+You can mute console.log output with `quiet` option
+
+```js
+  new WebpackCleanupPlugin({
+    quiet: true
+  })
+```
