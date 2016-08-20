@@ -17,7 +17,7 @@ class WebpackCleanupPlugin {
         return;
       }
 
-      const { exclude = [] } = this.options;
+      const { exclude = [], quiet = false } = this.options;
       // recursiveReadSync returns prefix of outputPath + "/"
       const offset = outputPath.length + 1;
       const assets = stats.toJson().assets.map(asset => asset.name);
@@ -28,7 +28,9 @@ class WebpackCleanupPlugin {
 
       files.forEach(fs.unlinkSync);
 
-      console.log('\nWebpackCleanupPlugin: %s file(s) deleted.', files.length);
+      if (!quiet) {
+        console.log('\nWebpackCleanupPlugin: %s file(s) deleted.', files.length);
+      }
     });
   }
 
