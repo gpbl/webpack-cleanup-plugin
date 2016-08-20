@@ -4,7 +4,9 @@
   "description": "Plugin for webpack to cleanup extraneous files from the output path directory",
   "main": "./lib/WebpackCleanupPlugin.js",
   "scripts": {
-    "prepublish": "babel ./src -d ./lib --source-maps",
+    "clean": "rimraf lib",
+    "build": "babel ./src -d ./lib --source-maps",
+    "prepublish": "npm run clean && npm run build",
     "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -33,7 +35,8 @@
     "eslint-config-gpbl": "1.0.2",
     "eslint-plugin-import": "1.13.0",
     "eslint-plugin-jsx-a11y": "2.1.0",
-    "eslint-plugin-react": "6.1.2"
+    "eslint-plugin-react": "6.1.2",
+    "rimraf": "2.5.4"
   },
   "dependencies": {
     "recursive-readdir-sync": "1.0.6"
