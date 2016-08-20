@@ -1,7 +1,7 @@
 /* eslint no-console: 0 */
 
-import fs from "fs";
-import recursiveReadSync from "recursive-readdir-sync";
+import fs from 'fs';
+import recursiveReadSync from 'recursive-readdir-sync';
 
 class WebpackCleanupPlugin {
 
@@ -10,14 +10,14 @@ class WebpackCleanupPlugin {
   }
 
   apply(compiler) {
-
     const outputPath = compiler.options.output.path;
 
-    compiler.plugin("done", (stats) => {
-      if (compiler.outputFileSystem.constructor.name !== 'NodeOutputFileSystem')
+    compiler.plugin('done', (stats) => {
+      if (compiler.outputFileSystem.constructor.name !== 'NodeOutputFileSystem') {
         return;
+      }
 
-      const { exclude=[] } = this.options;
+      const { exclude = [] } = this.options;
       // recursiveReadSync returns prefix of outputPath + "/"
       const offset = outputPath.length + 1;
       const assets = stats.toJson().assets.map(asset => asset.name);
@@ -28,10 +28,8 @@ class WebpackCleanupPlugin {
 
       files.forEach(fs.unlinkSync);
 
-      console.log("\nWebpackCleanupPlugin: %s file(s) deleted.", files.length);
-
+      console.log('\nWebpackCleanupPlugin: %s file(s) deleted.', files.length);
     });
-
   }
 
 }
