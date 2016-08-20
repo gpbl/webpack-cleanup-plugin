@@ -1,9 +1,4 @@
 {
-  "extends": "gpbl/es6",
-  "ecmaFeatures": {
-    "modules": true
-  },
-  "env": {
-    "node": true
-  }
+  "parser": "babel-eslint",
+  "extends": "airbnb"
 }
