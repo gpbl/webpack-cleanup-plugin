@@ -36,4 +36,4 @@ class WebpackCleanupPlugin {
 
 }
 
-export default WebpackCleanupPlugin;
+module.exports = WebpackCleanupPlugin;
