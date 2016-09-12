@@ -39,6 +39,7 @@
     "rimraf": "2.5.4"
   },
   "dependencies": {
+    "minimatch": "3.0.3",
     "recursive-readdir-sync": "1.0.6"
   }
 }
