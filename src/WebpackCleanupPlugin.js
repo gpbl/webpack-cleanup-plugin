@@ -2,7 +2,7 @@
 
 import fs from 'fs';
 import recursiveReadSync from 'recursive-readdir-sync';
-import minimatch from 'minimatch'
+import minimatch from 'minimatch';
 
 class WebpackCleanupPlugin {
 
@@ -18,19 +18,22 @@ class WebpackCleanupPlugin {
         return;
       }
 
-      const { exclude = [], quiet = false } = this.options;
-      // recursiveReadSync returns prefix of outputPath + "/"
-      const offset = outputPath.length + 1;
+      const {
+        exclude = [],
+        quiet = false,
+      } = this.options;
+
+      const offset = outputPath.length + 1; // recursiveReadSync returns prefix of outputPath + "/"
       const assets = stats.toJson().assets.map(asset => asset.name);
       const files = recursiveReadSync(outputPath)
         .map(path => path.substr(offset))
-        .filter(file => {
-            for (var i = 0; i < exclude.length; i++) {
-                if (minimatch(file, exclude[i], {dot: true})) {
-                    return false
-                }
+        .filter((file) => {
+          for (let i = 0; i < exclude.length; i += 1) {
+            if (minimatch(file, exclude[i], { dot: true })) {
+              return false;
             }
-            return assets.indexOf(file) === -1
+          }
+          return assets.indexOf(file) === -1;
         })
         .map(file => `${outputPath}/${file}`);
 
