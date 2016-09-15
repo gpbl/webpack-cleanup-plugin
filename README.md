@@ -34,7 +34,7 @@ Add the plugin to the `plugins` array in your webpack's config, e.g.:
 }
 ```
 
-### Options 
+### Options
 
 * If you want to keep some files, e.g. a `stats.json` file generated from some other
 plugins, use the **`exclude`** option:
@@ -42,9 +42,11 @@ plugins, use the **`exclude`** option:
 ```js
 // Remove all but stats.json and important.json
 new WebpackCleanupPlugin({
-  exclude: ["stats.json", "important.js"]
+  exclude: ["stats.json", "important.js", "folder/**/*"]
 })
 ```
+
+The exclude option support globing with [minimatch](https://github.com/isaacs/minimatch).
 
 * To mute the console output, use the **`quiet`** option:
 
