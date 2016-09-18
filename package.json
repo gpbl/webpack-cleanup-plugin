@@ -44,6 +44,7 @@
     "webpack": "1.13.2"
   },
   "dependencies": {
+    "lodash.union": "4.6.0",
     "minimatch": "3.0.3",
     "recursive-readdir-sync": "1.0.6"
   }
