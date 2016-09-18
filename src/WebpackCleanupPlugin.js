@@ -1,8 +1,9 @@
 /* eslint no-console: 0 */
 
 import fs from 'fs';
-import recursiveReadSync from 'recursive-readdir-sync';
-import minimatch from 'minimatch';
+import union from 'lodash.union';
+
+import getFiles from './getFiles';
 
 class WebpackCleanupPlugin {
 
@@ -18,28 +19,18 @@ class WebpackCleanupPlugin {
         return;
       }
 
-      const {
-        exclude = [],
-        quiet = false,
-      } = this.options;
-
-      const offset = outputPath.length + 1; // recursiveReadSync returns prefix of outputPath + "/"
       const assets = stats.toJson().assets.map(asset => asset.name);
-      const files = recursiveReadSync(outputPath)
-        .map(path => path.substr(offset))
-        .filter((file) => {
-          for (let i = 0; i < exclude.length; i += 1) {
-            if (minimatch(file, exclude[i], { dot: true })) {
-              return false;
-            }
-          }
-          return assets.indexOf(file) === -1;
-        })
-        .map(file => `${outputPath}/${file}`);
+      const exclude = union(this.options.exclude, assets);
+      const files = getFiles(outputPath, exclude);
 
-      files.forEach(fs.unlinkSync);
-
-      if (!quiet) {
+      if (this.options.preview) {
+        console.log('%s file(s) would be deleted:', files.length);
+        files.forEach(file => console.log('    %s', file));
+        console.log();
+      } else {
+        files.forEach(fs.unlinkSync);
+      }
+      if (!this.options.quiet) {
         console.log('\nWebpackCleanupPlugin: %s file(s) deleted.', files.length);
       }
     });
