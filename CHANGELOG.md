@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.4.0](https://github.com/gpbl/webpack-cleanup-plugin/tree/v0.4.0) (2016-09-18)
+
+* Added `preview` option
+* Add support for minimatch globs to `exclude` option ([#18](https://github.com/gpbl/webpack-cleanup-plugin/pull/18) by [geekuillaume](https://github.com/geekuillaume)).
+
 ## [v0.3.1](https://github.com/gpbl/webpack-cleanup-plugin/tree/v0.3.1) (2016-08-31)
 
 * Fixed an issue with plugin initialization ([#14](https://github.com/gpbl/webpack-cleanup-plugin/pull/14) by [ifamed](https://github.com/ifamed)).
