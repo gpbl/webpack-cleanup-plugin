@@ -22,6 +22,12 @@ describe('getFiles', () => {
     expect(files).to.not.include(`${assetsPath}/a.txt`);
     expect(files).to.not.include(`${assetsPath}/b.txt`);
   });
+  it('exclude relative files from array', () => {
+    const files = getFiles(assetsPath, ['./a.txt', './b.txt']);
+    expect(files).to.have.length(5);
+    expect(files).to.not.include(`${assetsPath}/a.txt`);
+    expect(files).to.not.include(`${assetsPath}/b.txt`);
+  });
   it('exclude files from glob', () => {
     const files = getFiles(assetsPath, ['folder/**/*.txt']);
     expect(files).to.have.length(5);
