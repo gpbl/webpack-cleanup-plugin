@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.4.1](https://github.com/gpbl/webpack-cleanup-plugin/tree/v0.4.1) (2016-10-13)
+
+* Fixed [an issue](https://github.com/gpbl/webpack-cleanup-plugin/pull/20) with relative files ([#21](https://github.com/gpbl/webpack-cleanup-plugin/pull/21)).
+
 ## [v0.4.0](https://github.com/gpbl/webpack-cleanup-plugin/tree/v0.4.0) (2016-09-18)
 
 * Added `preview` option

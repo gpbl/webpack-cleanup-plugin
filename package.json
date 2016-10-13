@@ -1,8 +1,11 @@
 {
   "name": "webpack-cleanup-plugin",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Plugin for webpack to cleanup extraneous files from the output path directory",
   "main": "./lib/WebpackCleanupPlugin.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "clean": "rimraf lib",
     "build": "babel ./src -d ./lib --source-maps",
