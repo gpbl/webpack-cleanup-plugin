@@ -6,6 +6,8 @@ import { stub } from 'sinon';
 
 import WebpackCleanupPlugin from '../src/WebpackCleanupPlugin';
 
+const njoin = (x, y) => path.normalize(path.join(x, y))
+
 describe('WebpackCleanupPlugin', () => {
   it('should set options from constructor', () => {
     const plugin = new WebpackCleanupPlugin({ quiet: true, preview: true, exclude: ['a.txt'] });
@@ -33,11 +35,11 @@ describe('WebpackCleanupPlugin', () => {
         plugins: [new WebpackCleanupPlugin({ quiet: true })],
       });
       compiler.run(() => {
-        expect(unlinkSync).to.have.been.calledWith(`${outputPath}/a.txt`);
-        expect(unlinkSync).to.have.been.calledWith(`${outputPath}/b.txt`);
-        expect(unlinkSync).to.not.have.been.calledWith(`${outputPath}/bundle.js`);
-        expect(unlinkSync).to.have.been.calledWith(`${outputPath}/foo.json`);
-        expect(unlinkSync).to.have.been.calledWith(`${outputPath}/z.txt`);
+        expect(unlinkSync).to.have.been.calledWith(njoin(outputPath, 'a.txt'));
+        expect(unlinkSync).to.have.been.calledWith(njoin(outputPath, 'b.txt'));
+        expect(unlinkSync).to.not.have.been.calledWith(njoin(outputPath, 'bundle.js'));
+        expect(unlinkSync).to.have.been.calledWith(njoin(outputPath, 'foo.json'));
+        expect(unlinkSync).to.have.been.calledWith(njoin(outputPath, 'z.txt'));
         done();
       });
     });
