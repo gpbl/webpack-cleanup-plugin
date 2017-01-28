@@ -19,7 +19,10 @@ class WebpackCleanupPlugin {
         return;
       }
 
-      const assets = stats.toJson().assets.map(asset => asset.name);
+      let assets = [];
+      if (!this.options.nomercy) {
+        assets = stats.toJson().assets.map(asset => asset.name);
+      }
       const exclude = union(this.options.exclude, assets);
       const files = getFiles(outputPath, exclude);
 
