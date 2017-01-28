@@ -70,3 +70,14 @@ new WebpackCleanupPlugin({
   preview: true,
 })
 ```
+
+* To delete unwanted generated files use the **`nomercy`** option:
+
+By default this plugin prevent from deleting any generated files. In after bundling clean up scenario, you can use the **`nomercy`** option in combinaison of the **`exclude`** option.
+
+```js
+new WebpackCleanupPlugin({
+  exclude:["bundle.*"],
+  nomercy: true,
+})
+```

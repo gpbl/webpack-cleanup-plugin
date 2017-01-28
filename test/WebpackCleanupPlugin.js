@@ -22,6 +22,7 @@ describe('WebpackCleanupPlugin', () => {
     const webpackConfig = {
       entry: path.join(__dirname, 'entry.js'),
       output: {
+        filename:'bundle.js',
         path: outputPath,
       },
     };
@@ -44,6 +45,20 @@ describe('WebpackCleanupPlugin', () => {
       });
     });
 
+    it('should delete every files from the output path when `nomercy: true`', (done) => {
+      const compiler = webpack({
+        ...webpackConfig,
+        plugins: [new WebpackCleanupPlugin({ nomercy: true, quiet: true })],
+      });
+      compiler.run(() => {
+        expect(unlinkSync).to.have.been.calledWith(njoin(outputPath, 'a.txt'));
+        expect(unlinkSync).to.have.been.calledWith(njoin(outputPath, 'b.txt'));
+        expect(unlinkSync).to.have.been.calledWith(njoin(outputPath, 'bundle.js'));
+        expect(unlinkSync).to.have.been.calledWith(njoin(outputPath, 'foo.json'));
+        expect(unlinkSync).to.have.been.calledWith(njoin(outputPath, 'z.txt'));
+        done();
+      });
+    });
     it('should not delete when previewing files', (done) => {
       const compiler = webpack({
         ...webpackConfig,
