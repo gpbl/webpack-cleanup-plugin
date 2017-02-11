@@ -8,8 +8,8 @@ export default function getFiles(fromPath, exclude = []) {
     .map(p => p.substr(npath.length + 1)) // get files relative to fromPath
     .filter(file =>
       exclude.every(excluded =>
-        !minimatch(file, path.join(excluded), { dot: true })
-      )
+        !minimatch(file, path.join(excluded), { dot: true }),
+      ),
     )
     .map(file => path.join(npath, file));
   return files;
