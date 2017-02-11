@@ -1,6 +1,6 @@
 {
   "name": "webpack-cleanup-plugin",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Plugin for webpack to cleanup extraneous files from the output path directory",
   "main": "./lib/WebpackCleanupPlugin.js",
   "files": [

@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.4.2](https://github.com/gpbl/webpack-cleanup-plugin/tree/v0.4.2) (2017-02-10)
+
+* Fixed [a compatibility issue]((https://github.com/gpbl/webpack-cleanup-plugin/pull/20)) with Windows ([#25](https://github.com/gpbl/webpack-cleanup-plugin/pull/25) by [foxbunny](https://github.com/foxbunny)).
+
 ## [v0.4.1](https://github.com/gpbl/webpack-cleanup-plugin/tree/v0.4.1) (2016-10-13)
 
 * Fixed [an issue](https://github.com/gpbl/webpack-cleanup-plugin/pull/20) with relative files ([#21](https://github.com/gpbl/webpack-cleanup-plugin/pull/21)).
