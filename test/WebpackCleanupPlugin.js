@@ -6,7 +6,7 @@ import { stub } from 'sinon';
 
 import WebpackCleanupPlugin from '../src/WebpackCleanupPlugin';
 
-const njoin = (x, y) => path.normalize(path.join(x, y))
+const njoin = (x, y) => path.normalize(path.join(x, y));
 
 describe('WebpackCleanupPlugin', () => {
   it('should set options from constructor', () => {
@@ -23,6 +23,7 @@ describe('WebpackCleanupPlugin', () => {
       entry: path.join(__dirname, 'entry.js'),
       output: {
         path: outputPath,
+        filename: 'bundle.js',
       },
     };
 
