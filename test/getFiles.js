@@ -18,6 +18,14 @@ describe('getFiles', () => {
     expect(files).to.include(njoin(assetsPath, 'foo.json'));
     expect(files).to.include(njoin(assetsPath, 'z.txt'));
   });
+  it('handles trailing slash correctly', () => {
+    const files = getFiles(assetsPath + '/');
+    expect(files).to.include(njoin(assetsPath, 'folder/p.txt'));
+  });
+  it('handles relative paths', () => {
+    const files = getFiles('./test/assets');
+    expect(files).to.include('test/assets/folder/p.txt');
+  });
   it('get recursively the files in the relative path using POSIX separator', () => {
     const files = getFiles('./test/assets');
     expect(files).to.have.length(7);
