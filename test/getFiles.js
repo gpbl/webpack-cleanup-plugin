@@ -4,7 +4,7 @@ import getFiles from '../src/getFiles';
 
 const assetsPath = path.resolve(__dirname, 'assets');
 
-const njoin = (x, y) => path.normalize(path.join(x, y))
+const njoin = (x, y) => path.normalize(path.join(x, y));
 
 describe('getFiles', () => {
   it('get recursively the files in the output path', () => {
@@ -19,7 +19,7 @@ describe('getFiles', () => {
     expect(files).to.include(njoin(assetsPath, 'z.txt'));
   });
   it('handles trailing slash correctly', () => {
-    const files = getFiles(assetsPath + '/');
+    const files = getFiles(`${assetsPath}/`);
     expect(files).to.include(njoin(assetsPath, 'folder/p.txt'));
   });
   it('handles relative paths', () => {
