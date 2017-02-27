@@ -24,7 +24,7 @@ describe('getFiles', () => {
   });
   it('handles relative paths', () => {
     const files = getFiles('./test/assets');
-    expect(files).to.include('test/assets/folder/p.txt');
+    expect(files).to.include(path.normalize('test/assets/folder/p.txt'));
   });
   it('get recursively the files in the relative path using POSIX separator', () => {
     const files = getFiles('./test/assets');
