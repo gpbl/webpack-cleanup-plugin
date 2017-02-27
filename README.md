@@ -33,7 +33,7 @@ Then add the plugin to the `plugins` array in your webpack's config, e.g.:
 import WebpackCleanupPlugin from 'webpack-cleanup-plugin';
 const config = {
   output: {
-    path: "/my/output/path" // absolute path
+    path: "/my/output/path"
   },
   // ...
   plugins: [
