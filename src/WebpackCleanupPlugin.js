@@ -25,7 +25,7 @@ class WebpackCleanupPlugin {
       const exclude = union(this.options.exclude, assets);
 
       let include;
-      if (this.options.selfOnly) {
+      if (this.options.cleanupOnlyLastBuild) {
         /**
          * Only include files that were in the previous build
          */

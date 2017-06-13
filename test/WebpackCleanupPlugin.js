@@ -59,7 +59,10 @@ describe('WebpackCleanupPlugin', () => {
     });
 
     it('should only delete files created by webpack', (done) => {
-      const webpackCleanupPlugin = new WebpackCleanupPlugin({ selfOnly: true, quiet: true });
+      const webpackCleanupPlugin = new WebpackCleanupPlugin({
+        cleanupOnlyLastBuild: true,
+        quiet: true,
+      });
       const compiler = webpack({
         ...webpackConfig,
         output: {

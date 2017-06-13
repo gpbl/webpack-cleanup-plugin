@@ -55,11 +55,11 @@ new WebpackCleanupPlugin({
 })
 ```
 
-* To only remove file assets created directly by current Webpack build, use the **`selfOnly`** option:
+* To only remove file assets created directly by current Webpack build, use the **`cleanupOnlyLastBuild`** option:
 
 ```js
 new WebpackCleanupPlugin({
-  selfOnly: true,
+  cleanupOnlyLastBuild: true,
 })
 ```
 
