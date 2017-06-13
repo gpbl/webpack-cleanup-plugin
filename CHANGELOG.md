@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Added **`selfOnly`** option
+
 ## [v0.5.1](https://github.com/gpbl/webpack-cleanup-plugin/tree/v0.5.1) (2017-02-27)
 
 * Add support for relative output paths ([#23](https://github.com/gpbl/webpack-cleanup-plugin/pull/23) by [bassarisse](https://github.com/bassarisse), [#28](https://github.com/gpbl/webpack-cleanup-plugin/pull/28) by [x-yuri](https://github.com/x-yuri) and [#29](https://github.com/gpbl/webpack-cleanup-plugin/pull/29) by [foxbunny](https://github.com/foxbunny)).

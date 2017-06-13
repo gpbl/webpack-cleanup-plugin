@@ -47,6 +47,7 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
+    "lodash.includes": "4.3.0",
     "lodash.union": "4.6.0",
     "minimatch": "3.0.3",
     "recursive-readdir-sync": "1.0.6"

@@ -55,6 +55,14 @@ new WebpackCleanupPlugin({
 })
 ```
 
+* To only remove file assets created directly by current Webpack build, use the **`selfOnly`** option:
+
+```js
+new WebpackCleanupPlugin({
+  selfOnly: true,
+})
+```
+
 * To mute the console output, use the **`quiet`** option:
 
 ```js

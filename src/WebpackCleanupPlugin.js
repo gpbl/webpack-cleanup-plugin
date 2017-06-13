@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import union from 'lodash.union';
+import includes from 'lodash.includes';
 
 import getFiles from './getFiles';
 
@@ -9,6 +10,7 @@ class WebpackCleanupPlugin {
 
   constructor(options = {}) {
     this.options = options;
+    this.previousAssets = [];
   }
 
   apply(compiler) {
@@ -21,7 +23,21 @@ class WebpackCleanupPlugin {
 
       const assets = stats.toJson().assets.map(asset => asset.name);
       const exclude = union(this.options.exclude, assets);
-      const files = getFiles(outputPath, exclude);
+
+      let include;
+      if (this.options.selfOnly) {
+        /**
+         * Only include files that were in the previous build
+         */
+        include = this.previousAssets.filter(previousAsset => !includes(assets, previousAsset));
+
+        /**
+         * Cache assets for next build
+         */
+        this.previousAssets = assets;
+      }
+
+      const files = getFiles(outputPath, exclude, include);
 
       if (this.options.preview) {
         console.log('%s file(s) would be deleted:', files.length);
