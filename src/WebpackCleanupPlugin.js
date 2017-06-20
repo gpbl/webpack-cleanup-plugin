@@ -24,14 +24,14 @@ class WebpackCleanupPlugin {
       const files = getFiles(outputPath, exclude);
 
       if (this.options.preview) {
-        console.log('%s file(s) would be deleted:', files.length);
-        files.forEach(file => console.log('    %s', file));
-        console.log();
+        console.warn('%s file(s) would be deleted:', files.length);
+        files.forEach(file => console.warn('    %s', file));
+        console.warn();
       } else {
         files.forEach(fs.unlinkSync);
       }
       if (!this.options.quiet) {
-        console.log('\nWebpackCleanupPlugin: %s file(s) deleted.', files.length);
+        console.warn('\nWebpackCleanupPlugin: %s file(s) deleted.', files.length);
       }
     });
   }
