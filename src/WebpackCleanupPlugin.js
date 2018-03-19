@@ -14,7 +14,7 @@ class WebpackCleanupPlugin {
   apply(compiler) {
     const outputPath = compiler.options.output.path;
 
-    compiler.plugin('done', (stats) => {
+    compiler.hooks.done.tap('webpack-cleanup-plugin', (stats) => {
       if (compiler.outputFileSystem.constructor.name !== 'NodeOutputFileSystem') {
         return;
       }
