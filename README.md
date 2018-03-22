@@ -1,3 +1,5 @@
+🚨 I don't have the time to follow or update this plugin. If someone wants to the ownership of the npm module please io@gpbl.org, thanks!
+
 # webpack-cleanup-plugin
 
 This [webpack](http://webpack.github.io) plugin cleans up the extraneous files
