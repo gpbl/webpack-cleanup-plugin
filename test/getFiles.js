@@ -60,4 +60,37 @@ describe('getFiles', () => {
     expect(files).to.include(path.join(assetsPath, 'foo.json'));
     expect(files).to.include(path.join(assetsPath, 'z.txt'));
   });
+
+  it('only look at includes', () => {
+    const include = ['bundle.js', 'folder/p.txt'];
+
+    const files = getFiles(assetsPath, [], include);
+
+    expect(files).to.have.length(2);
+    expect(files).to.include(path.join(assetsPath, 'bundle.js'));
+    expect(files).to.include(path.join(assetsPath, 'folder/p.txt'));
+
+    expect(files).to.not.include(path.join(assetsPath, 'folder/q.txt'));
+    expect(files).to.not.include(path.join(assetsPath, 'a.txt'));
+    expect(files).to.not.include(path.join(assetsPath, 'b.txt'));
+    expect(files).to.not.include(path.join(assetsPath, 'foo.json'));
+    expect(files).to.not.include(path.join(assetsPath, 'z.txt'));
+  });
+
+  it('only look at includes but respects excludes', () => {
+    const include = ['bundle.js', 'folder/p.txt'];
+
+    const files = getFiles(assetsPath, ['folder/**/*.txt'], include);
+
+    expect(files).to.have.length(1);
+    expect(files).to.include(path.join(assetsPath, 'bundle.js'));
+
+    expect(files).to.not.include(path.join(assetsPath, 'folder/p.txt'));
+
+    expect(files).to.not.include(path.join(assetsPath, 'folder/q.txt'));
+    expect(files).to.not.include(path.join(assetsPath, 'a.txt'));
+    expect(files).to.not.include(path.join(assetsPath, 'b.txt'));
+    expect(files).to.not.include(path.join(assetsPath, 'foo.json'));
+    expect(files).to.not.include(path.join(assetsPath, 'z.txt'));
+  });
 });

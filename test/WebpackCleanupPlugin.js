@@ -57,5 +57,38 @@ describe('WebpackCleanupPlugin', () => {
         done();
       });
     });
+
+    it('should only delete files created by webpack', (done) => {
+      const webpackCleanupPlugin = new WebpackCleanupPlugin({
+        cleanupOnlyLastBuild: true,
+        quiet: true,
+      });
+      const compiler = webpack({
+        ...webpackConfig,
+        output: {
+          path: outputPath,
+          filename: 'bundle.js',
+        },
+        plugins: [webpackCleanupPlugin],
+      });
+
+      /**
+       * mock the previous build's assets
+       */
+      webpackCleanupPlugin.previousAssets = ['bundle.js', 'a.txt', 'folder/q.txt'];
+
+      compiler.run(() => {
+        expect(webpackCleanupPlugin.previousAssets).to.deep.equal(['bundle.js']);
+        expect(unlinkSync).to.have.been.calledWith(njoin(outputPath, 'a.txt'));
+        expect(unlinkSync).to.have.been.calledWith(njoin(outputPath, 'folder/q.txt'));
+
+        expect(unlinkSync).to.not.have.been.calledWith(njoin(outputPath, 'folder/p.txt'));
+        expect(unlinkSync).to.not.have.been.calledWith(njoin(outputPath, 'b.txt'));
+        expect(unlinkSync).to.not.have.been.calledWith(njoin(outputPath, 'bundle.js'));
+        expect(unlinkSync).to.not.have.been.calledWith(njoin(outputPath, 'foo.json'));
+        expect(unlinkSync).to.not.have.been.calledWith(njoin(outputPath, 'z.txt'));
+        done();
+      });
+    });
   });
 });
